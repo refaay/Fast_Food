@@ -8,12 +8,18 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % all restaurants have a chance to be a depot
 {depot(A,P)} :- restaurant(A,P).
+% distance between all restaurants and depots
+%{dist(A, B, X)} :- restaurant(A,P1), depot(B,P2), X=|P1-P2|.
+% each restaurant is associated with only 1 depot
+1{dist(A, B, X): depot(B,P2), X=|P1-P2|}1 :- restaurant(A,P1).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % effect and preconditions of action
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % number of depots is constrained
 N{depot(A,P): restaurant(A,P)}N :- number_depots(N).
+% optimal set of depots
+#minimize{X, A, B: dist(A, B, X)}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % domain independent axioms
