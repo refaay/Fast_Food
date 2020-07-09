@@ -6,14 +6,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % sort and object declaration
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% boolean data type
-boolean(t;f).
-% initialize objects & their locations
+% all restaurants have a chance to be a depot
+{depot(A,P)} :- restaurant(A,P).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % effect and preconditions of action
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% number of depots is constrained
+N{depot(A,P): restaurant(A,P)}N :- number_depots(N).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % domain independent axioms
@@ -35,3 +35,4 @@ boolean(t;f).
 %=============================
 
 % for output readability
+#show depot/2.
